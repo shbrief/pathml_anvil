@@ -8,7 +8,7 @@ workflow PathMLPreprocessing {
 }
 
 task StainNormalizationHE {
-	File image_svs 
+	File image_svs
 	String sampleName
 
 	command <<<
@@ -54,7 +54,7 @@ task StainNormalizationHE {
 	>>>
 
 	runtime {
-		docker: "quay.io/shbrief/pathml_docker"
+		docker: "quay.io/shbrief/pathml_anvil"
 		cpu : 4
 		memory: "16 GB"
 	}
