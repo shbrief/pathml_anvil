@@ -1,4 +1,5 @@
 # syntax=docker/dockerfile:1
+# Remove the container varification and Jupyter Lab setup parts from https://github.com/Dana-Farber-AIOS/pathml/blob/master/Dockerfile
 
 FROM ubuntu:20.04
 # LABEL about the custom image
@@ -46,14 +47,3 @@ COPY tests/ /opt/pathml/tests
 RUN pip3 install pip==21.3.1 \
     && pip3 install numpy==1.19.5 spams==2.6.2.5 \
     && pip3 install python-bioformats==4.0.0 deepcell /opt/pathml/ pytest
-
-# run tests to verify container
-WORKDIR /opt/pathml
-RUN python3 -m pytest /opt/pathml/tests/ -m "not slow"
-
-WORKDIR /home/pathml
-
-# set up jupyter lab
-RUN pip3 install jupyter -U && pip3 install jupyterlab
-EXPOSE 8888
-ENTRYPOINT ["jupyter", "lab", "--ip=0.0.0.0", "--allow-root", "--no-browser"]
