@@ -47,5 +47,3 @@ COPY tests/ /opt/pathml/tests
 RUN pip3 install pip==21.3.1 \
     && pip3 install numpy==1.19.5 spams==2.6.2.5 \
     && pip3 install python-bioformats==4.0.0 deepcell /opt/pathml/ pytest
-
-WORKDIR /home/pathml
